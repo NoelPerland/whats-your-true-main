@@ -1,0 +1,74 @@
+[
+  {
+    "id": "blade",
+    "displayName": "Blade",
+    "description": "Balanced melee attacker with solid offense and defense.",
+    "modelTextureByGender": {
+      "male": "class_model_blade_male",
+      "female": "class_model_blade_female"
+    },
+    "baseStats": {
+      "hp": 120,
+      "mp": 30,
+      "attack": 14,
+      "defense": 11,
+      "magic": 6,
+      "speed": 9
+    },
+    "startingSkillIds": ["blade_slash", "focus_guard"]
+  },
+  {
+    "id": "mage",
+    "displayName": "Mage",
+    "description": "Elemental caster with high magic and low durability.",
+    "modelTextureByGender": {
+      "male": "class_model_mage_male",
+      "female": "class_model_mage_female"
+    },
+    "baseStats": {
+      "hp": 80,
+      "mp": 70,
+      "attack": 6,
+      "defense": 7,
+      "magic": 16,
+      "speed": 10
+    },
+    "startingSkillIds": ["arcane_bolt", "ember_spark"]
+  },
+  {
+    "id": "guardian",
+    "displayName": "Guardian",
+    "description": "Defensive frontline with high HP and protection tools.",
+    "modelTextureByGender": {
+      "male": "class_model_guardian_male",
+      "female": "class_model_guardian_female"
+    },
+    "baseStats": {
+      "hp": 140,
+      "mp": 25,
+      "attack": 10,
+      "defense": 15,
+      "magic": 5,
+      "speed": 6
+    },
+    "startingSkillIds": ["shield_bash", "fortify"]
+  },
+  {
+    "id": "rogue",
+    "displayName": "Rogue",
+    "description": "Fast striker with high speed and precision damage.",
+    "modelTextureByGender": {
+      "male": "class_model_rogue_male",
+      "female": "class_model_rogue_female"
+    },
+    "baseStats": {
+      "hp": 95,
+      "mp": 35,
+      "attack": 12,
+      "defense": 8,
+      "magic": 7,
+      "speed": 15
+    },
+    "startingSkillIds": ["quick_stab", "shadow_step"]
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "createdAt": "1970-01-01T00:00:00.000Z",
+  "updatedAt": "1970-01-01T00:00:00.000Z",
+  "playerProfile": null,
+  "party": [],
+  "inventory": {
+    "items": []
+  },
+  "equipment": {
+    "equippedByMemberId": {}
+  },
+  "quests": [],
+  "flags": {},
+  "mapState": {
+    "mapId": "starter_town",
+    "spawnPointId": "town_square"
+  },
+  "progression": {
+    "chapter": 0,
+    "storyStep": "intro"
+  }
+}

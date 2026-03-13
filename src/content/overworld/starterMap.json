@@ -1,0 +1,34 @@
+{
+  "mapId": "starter_town",
+  "bounds": {
+    "x": 24,
+    "y": 24,
+    "width": 912,
+    "height": 492
+  },
+  "spawnPoint": {
+    "id": "town_square",
+    "x": 336,
+    "y": 352,
+    "label": "Village Plaza"
+  },
+  "npc": {
+    "id": "npc_guide",
+    "name": "Village Guide",
+    "x": 688,
+    "y": 288,
+    "interactionRadius": 80,
+    "dialogueLines": [
+      "Welcome to Embertrail Village, traveler.",
+      "Follow the eastern path when you are ready for your first skirmish."
+    ]
+  },
+  "encounterZone": {
+    "id": "east_wilds_edge",
+    "x": 760,
+    "y": 112,
+    "width": 152,
+    "height": 288,
+    "label": "Wild Route"
+  }
+}

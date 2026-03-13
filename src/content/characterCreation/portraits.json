@@ -1,0 +1,66 @@
+[
+  {
+    "id": "portrait_blade_male",
+    "label": "Samurai",
+    "description": "Traditional swordsman portrait for a male Blade.",
+    "classId": "blade",
+    "gender": "male",
+    "textureKey": "portrait_blade_male"
+  },
+  {
+    "id": "portrait_blade_female",
+    "label": "Princess Knight",
+    "description": "Noble frontline portrait for a female Blade.",
+    "classId": "blade",
+    "gender": "female",
+    "textureKey": "portrait_blade_female"
+  },
+  {
+    "id": "portrait_mage_male",
+    "label": "Dark Sorcerer",
+    "description": "Arcane caster portrait for a male Mage.",
+    "classId": "mage",
+    "gender": "male",
+    "textureKey": "portrait_mage_male"
+  },
+  {
+    "id": "portrait_mage_female",
+    "label": "Mystic",
+    "description": "Focused caster portrait for a female Mage.",
+    "classId": "mage",
+    "gender": "female",
+    "textureKey": "portrait_mage_female"
+  },
+  {
+    "id": "portrait_guardian_male",
+    "label": "Elder Guard",
+    "description": "Veteran defender portrait for a male Guardian.",
+    "classId": "guardian",
+    "gender": "male",
+    "textureKey": "portrait_guardian_male"
+  },
+  {
+    "id": "portrait_guardian_female",
+    "label": "Cave Sentinel",
+    "description": "Reliable protector portrait for a female Guardian.",
+    "classId": "guardian",
+    "gender": "female",
+    "textureKey": "portrait_guardian_female"
+  },
+  {
+    "id": "portrait_rogue_male",
+    "label": "Red Ninja",
+    "description": "Stealth-oriented portrait for a male Rogue.",
+    "classId": "rogue",
+    "gender": "male",
+    "textureKey": "portrait_rogue_male"
+  },
+  {
+    "id": "portrait_rogue_female",
+    "label": "Shadow Scout",
+    "description": "Agile infiltrator portrait for a female Rogue.",
+    "classId": "rogue",
+    "gender": "female",
+    "textureKey": "portrait_rogue_female"
+  }
+]

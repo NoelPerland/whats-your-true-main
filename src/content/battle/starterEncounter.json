@@ -1,0 +1,14 @@
+{
+  "encounterId": "starter_slime",
+  "name": "Roadside Slime",
+  "introText": "A wild slime bounces into your path!",
+  "rewardText": "You gained confidence from the skirmish.",
+  "enemy": {
+    "id": "enemy_slime",
+    "name": "Green Slime",
+    "maxHp": 36,
+    "attack": 9,
+    "defense": 3,
+    "speed": 8
+  }
+}

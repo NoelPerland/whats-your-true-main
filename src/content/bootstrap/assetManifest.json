@@ -1,0 +1,29 @@
+[
+  {
+    "key": "placeholder-pixel",
+    "type": "image",
+    "assetId": "PIXEL",
+    "required": true
+  },
+  {
+    "key": "title-bg",
+    "type": "image",
+    "assetId": "TITLE_BG",
+    "fallbackAssetId": "PIXEL",
+    "required": true
+  },
+  {
+    "key": "title-logo",
+    "type": "image",
+    "assetId": "TITLE_LOGO",
+    "fallbackAssetId": "PIXEL",
+    "required": true
+  },
+  {
+    "key": "ui-panel",
+    "type": "image",
+    "assetId": "UI_PANEL",
+    "fallbackAssetId": "PIXEL",
+    "required": true
+  }
+]

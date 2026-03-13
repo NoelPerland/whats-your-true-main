@@ -1,0 +1,30 @@
+[
+  {
+    "encounterId": "starter_slime",
+    "name": "Roadside Slime",
+    "introText": "A wild slime bounces into your path!",
+    "rewardText": "You gained confidence from the skirmish.",
+    "enemy": {
+      "id": "enemy_slime",
+      "name": "Green Slime",
+      "maxHp": 36,
+      "attack": 9,
+      "defense": 3,
+      "speed": 8
+    }
+  },
+  {
+    "encounterId": "starter_mouse",
+    "name": "Sneaky Ambush",
+    "introText": "A cave mouse darts out from the brush!",
+    "rewardText": "You learned to stay alert on the road.",
+    "enemy": {
+      "id": "enemy_mouse",
+      "name": "Cave Mouse",
+      "maxHp": 28,
+      "attack": 11,
+      "defense": 2,
+      "speed": 12
+    }
+  }
+]

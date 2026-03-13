@@ -1,0 +1,23 @@
+{
+  "gameTitle": "Untitled 2D JRPG",
+  "subtitle": "Starter Bootstrap Build",
+  "menu": [
+    {
+      "id": "new_game",
+      "label": "New Game",
+      "action": "new_game"
+    },
+    {
+      "id": "load_game",
+      "label": "Load Game",
+      "action": "load_game"
+    }
+  ],
+  "statusMessages": {
+    "noSaveData": "No save data found.",
+    "newGameReady": "New game session seeded.",
+    "loadGameReady": "Save loaded successfully.",
+    "characterCreationUnavailable": "Character creation scene is not available yet.",
+    "overworldUnavailable": "Overworld scene is not available yet."
+  }
+}

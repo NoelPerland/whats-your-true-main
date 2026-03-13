@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  background:
+    radial-gradient(circle at top, rgba(88, 132, 214, 0.16), transparent 24%),
+    radial-gradient(circle at 20% 12%, rgba(217, 181, 94, 0.1), transparent 18%),
+    linear-gradient(180deg, #02040a 0%, #06101b 38%, #03060b 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.04), transparent 18%),
+    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.03), transparent 14%);
+  background-size: 96px 96px, 96px 96px, 100% 100%, 100% 100%;
+  opacity: 0.26;
+  mix-blend-mode: soft-light;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, transparent 42%, rgba(0, 0, 0, 0.5) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.28));
+}
+
+body::selection {
+  background: rgba(217, 181, 94, 0.3);
+}
+
+@keyframes particleDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0);
+    opacity: 0.85;
+  }
+}
+
+@keyframes flareSweep {
+  0% {
+    transform: translateX(-140%);
+  }
+
+  100% {
+    transform: translateX(180%);
+  }
+}
+
+@layer components {
+  .ui-eyebrow {
+    @apply text-[11px] uppercase tracking-[0.34em];
+    color: rgba(242, 220, 141, 0.74);
+  }
+
+  .ui-divider {
+    @apply relative h-px w-full overflow-hidden bg-white/5;
+  }
+
+  .ui-divider::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 42%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(242, 220, 141, 0.9), transparent);
+  }
+
+  .ui-bevel {
+    clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+  }
+
+  .ui-chrome {
+    @apply relative overflow-hidden border bg-[linear-gradient(180deg,rgba(11,19,34,0.92),rgba(4,8,17,0.97))] shadow-frame backdrop-blur-xl;
+    border-color: rgba(242, 220, 141, 0.18);
+  }
+
+  .ui-chrome::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border: 1px solid rgba(242, 220, 141, 0.08);
+    pointer-events: none;
+    clip-path: inherit;
+  }
+
+  .ui-chrome::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top, rgba(217, 181, 94, 0.09), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 22%);
+    pointer-events: none;
+  }
+
+  .ui-panel-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 120px 120px;
+    background-position: center;
+  }
+
+  .ui-noise {
+    position: relative;
+  }
+
+  .ui-noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    mix-blend-mode: soft-light;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.35) 0.7px, transparent 0.9px),
+      radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.22) 0.8px, transparent 1px),
+      radial-gradient(circle at 50% 85%, rgba(255, 255, 255, 0.16) 0.7px, transparent 0.9px);
+    background-size: 22px 22px, 28px 28px, 34px 34px;
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 181, 94, 0.4) rgba(255, 255, 255, 0.04);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(126, 90, 34, 0.9), rgba(217, 181, 94, 0.6));
+  border-radius: 999px;
+}
