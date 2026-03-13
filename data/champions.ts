@@ -4,6 +4,7 @@ export const champions: Champion[] = [
   {
     slug: "yasuo",
     name: "Yasuo",
+    riotId: "Yasuo",
     roles: ["Mid", "Top"],
     personalityTags: ["ego", "mechanics", "chaos"],
     archetypeMatches: ["ego-technician", "map-ignoring-menace", "perma-fight-goblin"],
@@ -12,6 +13,7 @@ export const champions: Champion[] = [
   {
     slug: "yone",
     name: "Yone",
+    riotId: "Yone",
     roles: ["Mid", "Top"],
     personalityTags: ["ego", "mechanics", "delusion"],
     archetypeMatches: ["ego-technician", "scaling-delusionist"],
@@ -20,6 +22,7 @@ export const champions: Champion[] = [
   {
     slug: "lee-sin",
     name: "Lee Sin",
+    riotId: "LeeSin",
     roles: ["Jungle"],
     personalityTags: ["mechanics", "ego", "chaos"],
     archetypeMatches: ["ego-technician", "map-ignoring-menace", "coinflip-emperor"],
@@ -28,6 +31,7 @@ export const champions: Champion[] = [
   {
     slug: "katarina",
     name: "Katarina",
+    riotId: "Katarina",
     roles: ["Mid"],
     personalityTags: ["mechanics", "chaos", "ego"],
     archetypeMatches: ["map-ignoring-menace", "perma-fight-goblin"],
@@ -36,6 +40,7 @@ export const champions: Champion[] = [
   {
     slug: "riven",
     name: "Riven",
+    riotId: "Riven",
     roles: ["Top"],
     personalityTags: ["mechanics", "ego", "discipline"],
     archetypeMatches: ["ego-technician", "coinflip-emperor"],
@@ -44,6 +49,7 @@ export const champions: Champion[] = [
   {
     slug: "vayne",
     name: "Vayne",
+    riotId: "Vayne",
     roles: ["Bottom", "Top"],
     personalityTags: ["ego", "mechanics", "greed"],
     archetypeMatches: ["ego-technician", "scaling-delusionist"],
@@ -52,6 +58,7 @@ export const champions: Champion[] = [
   {
     slug: "draven",
     name: "Draven",
+    riotId: "Draven",
     roles: ["Bottom"],
     personalityTags: ["ego", "greed", "tilt"],
     archetypeMatches: ["coinflip-emperor", "map-ignoring-menace"],
@@ -60,6 +67,7 @@ export const champions: Champion[] = [
   {
     slug: "thresh",
     name: "Thresh",
+    riotId: "Thresh",
     roles: ["Support"],
     personalityTags: ["mechanics", "teamwork", "ego"],
     archetypeMatches: ["honor-bait-support", "ego-technician"],
@@ -68,6 +76,7 @@ export const champions: Champion[] = [
   {
     slug: "nami",
     name: "Nami",
+    riotId: "Nami",
     roles: ["Support"],
     personalityTags: ["teamwork", "discipline", "tilt"],
     archetypeMatches: ["honor-bait-support"],
@@ -76,6 +85,7 @@ export const champions: Champion[] = [
   {
     slug: "braum",
     name: "Braum",
+    riotId: "Braum",
     roles: ["Support"],
     personalityTags: ["teamwork", "discipline", "tilt"],
     archetypeMatches: ["honor-bait-support"],
@@ -84,6 +94,7 @@ export const champions: Champion[] = [
   {
     slug: "lulu",
     name: "Lulu",
+    riotId: "Lulu",
     roles: ["Support"],
     personalityTags: ["teamwork", "chaos", "tilt"],
     archetypeMatches: ["honor-bait-support", "perma-fight-goblin"],
@@ -92,6 +103,7 @@ export const champions: Champion[] = [
   {
     slug: "jhin",
     name: "Jhin",
+    riotId: "Jhin",
     roles: ["Bottom"],
     personalityTags: ["ego", "discipline", "mechanics"],
     archetypeMatches: ["ego-technician", "scaling-delusionist"],
@@ -100,6 +112,7 @@ export const champions: Champion[] = [
   {
     slug: "jinx",
     name: "Jinx",
+    riotId: "Jinx",
     roles: ["Bottom"],
     personalityTags: ["chaos", "greed", "delusion"],
     archetypeMatches: ["perma-fight-goblin", "scaling-delusionist"],
@@ -108,6 +121,7 @@ export const champions: Champion[] = [
   {
     slug: "ezreal",
     name: "Ezreal",
+    riotId: "Ezreal",
     roles: ["Bottom"],
     personalityTags: ["ego", "mechanics", "delusion"],
     archetypeMatches: ["ego-technician", "map-ignoring-menace"],
@@ -116,6 +130,7 @@ export const champions: Champion[] = [
   {
     slug: "rakan",
     name: "Rakan",
+    riotId: "Rakan",
     roles: ["Support"],
     personalityTags: ["teamwork", "chaos", "ego"],
     archetypeMatches: ["honor-bait-support", "perma-fight-goblin"],
@@ -124,6 +139,7 @@ export const champions: Champion[] = [
   {
     slug: "pyke",
     name: "Pyke",
+    riotId: "Pyke",
     roles: ["Support", "Mid"],
     personalityTags: ["chaos", "greed", "ego"],
     archetypeMatches: ["coinflip-emperor", "map-ignoring-menace", "perma-fight-goblin"],
@@ -132,6 +148,7 @@ export const champions: Champion[] = [
   {
     slug: "kayn",
     name: "Kayn",
+    riotId: "Kayn",
     roles: ["Jungle"],
     personalityTags: ["chaos", "greed", "ego"],
     archetypeMatches: ["coinflip-emperor", "perma-fight-goblin"],
@@ -140,6 +157,7 @@ export const champions: Champion[] = [
   {
     slug: "hecarim",
     name: "Hecarim",
+    riotId: "Hecarim",
     roles: ["Jungle"],
     personalityTags: ["chaos", "tilt", "greed"],
     archetypeMatches: ["coinflip-emperor", "perma-fight-goblin"],
@@ -148,6 +166,7 @@ export const champions: Champion[] = [
   {
     slug: "shaco",
     name: "Shaco",
+    riotId: "Shaco",
     roles: ["Jungle", "Support"],
     personalityTags: ["chaos", "ego", "tilt"],
     archetypeMatches: ["map-ignoring-menace", "coinflip-emperor"],
@@ -156,6 +175,7 @@ export const champions: Champion[] = [
   {
     slug: "nasus",
     name: "Nasus",
+    riotId: "Nasus",
     roles: ["Top"],
     personalityTags: ["discipline", "greed", "delusion"],
     archetypeMatches: ["scaling-delusionist"],
@@ -164,6 +184,7 @@ export const champions: Champion[] = [
   {
     slug: "veigar",
     name: "Veigar",
+    riotId: "Veigar",
     roles: ["Mid"],
     personalityTags: ["greed", "delusion", "discipline"],
     archetypeMatches: ["scaling-delusionist"],
@@ -172,6 +193,7 @@ export const champions: Champion[] = [
   {
     slug: "viktor",
     name: "Viktor",
+    riotId: "Viktor",
     roles: ["Mid"],
     personalityTags: ["discipline", "greed", "delusion"],
     archetypeMatches: ["scaling-delusionist", "ego-technician"],
@@ -180,6 +202,7 @@ export const champions: Champion[] = [
   {
     slug: "orianna",
     name: "Orianna",
+    riotId: "Orianna",
     roles: ["Mid"],
     personalityTags: ["discipline", "teamwork", "mechanics"],
     archetypeMatches: ["honor-bait-support", "ego-technician"],
@@ -188,6 +211,7 @@ export const champions: Champion[] = [
   {
     slug: "ahri",
     name: "Ahri",
+    riotId: "Ahri",
     roles: ["Mid"],
     personalityTags: ["mechanics", "discipline", "ego"],
     archetypeMatches: ["ego-technician", "map-ignoring-menace"],

@@ -6,11 +6,14 @@ import { useRouter } from "next/navigation";
 
 import { QuestionStage } from "@/components/quiz/QuestionStage";
 import { ActionButton } from "@/components/ui/ActionButton";
+import { ChampionArtPanel } from "@/components/ui/ChampionArtPanel";
 import { GoldCard } from "@/components/ui/GoldCard";
+import { PixelIcon } from "@/components/ui/PixelIcon";
+import { champions } from "@/data/champions";
 import { questions } from "@/data/questions";
 import { saveQuizOutcome } from "@/lib/result";
 import { buildQuizOutcome } from "@/lib/scoring";
-import type { QuestionAnswer } from "@/lib/types";
+import type { Champion, QuestionAnswer } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 const phaseLabels = [
@@ -19,6 +22,10 @@ const phaseLabels = [
   "Escalation",
   "Verdict",
 ];
+const phaseChampionSlugs = ["ahri", "lee-sin", "jinx", "yasuo"] as const;
+const phaseChampions = phaseChampionSlugs
+  .map((slug) => champions.find((champion) => champion.slug === slug))
+  .filter((champion): champion is Champion => champion !== undefined);
 
 export function QuizExperience() {
   const router = useRouter();
@@ -36,6 +43,7 @@ export function QuizExperience() {
   );
   const phase = phaseLabels[phaseIndex];
   const tension = Math.round(((currentIndex + 1) / questions.length) * 100);
+  const phaseChampion = phaseChampions[phaseIndex];
 
   useEffect(() => {
     return () => {
@@ -87,32 +95,47 @@ export function QuizExperience() {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
       <GoldCard className="min-h-[640px] px-6 py-8 sm:px-8 sm:py-10">
         <div className="mb-8 flex items-center justify-between gap-4">
           <div>
             <p className="ui-eyebrow">
               Question {currentIndex + 1} / {questions.length}
             </p>
-            <p className="mt-2 text-sm leading-7 text-slate-300">
-              Answer fast. The reading gets meaner if you overthink it.
+            <p className="mt-2 text-lg leading-7 text-slate-200">
+              Answer fast. The read gets meaner if you hesitate.
             </p>
           </div>
-          <div className="ui-bevel hidden border border-gold-400/18 bg-black/20 px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-slate-200 sm:block">
+          <div className="ui-bevel hidden border-2 border-gold-400/24 bg-black/20 px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-slate-100 sm:block">
             {phase}
           </div>
         </div>
 
         <div className="mb-8 space-y-4">
-          <div className="grid gap-4 rounded-[22px] border border-white/8 bg-black/18 px-4 py-4 sm:grid-cols-[minmax(0,1fr)_200px]">
+          <div className="flex flex-wrap gap-3">
+            <span className="ui-pixel-chip">
+              <PixelIcon icon="rune" size={3} />
+              Solo Queue Scan
+            </span>
+            <span className="ui-pixel-chip">
+              <PixelIcon icon="ward" size={3} />
+              No op.gg Import
+            </span>
+            <span className="ui-pixel-chip">
+              <PixelIcon icon="sword" size={3} />
+              Raw Lane Habits
+            </span>
+          </div>
+
+          <div className="grid gap-4 rounded-[22px] border-2 border-white/10 bg-black/18 px-4 py-4 sm:grid-cols-[minmax(0,1fr)_200px]">
             <div>
               <div className="flex items-center justify-between gap-3">
                 <span className="ui-eyebrow">Verdict calibration</span>
-                <span className="text-[11px] uppercase tracking-[0.32em] text-gold-300/82">
+                <span className="text-sm font-semibold uppercase tracking-[0.08em] text-gold-300/86">
                   {progress.toFixed(0)}%
                 </span>
               </div>
-              <div className="mt-4 h-3 overflow-hidden rounded-full border border-white/6 bg-[#060b13]">
+              <div className="mt-4 h-4 overflow-hidden rounded-full border-2 border-white/10 bg-[#060b13]">
                 <motion.div
                   className="relative h-full rounded-full bg-[linear-gradient(90deg,#5F4720,#B78B3C,#F2DC8D)] shadow-[0_0_22px_rgba(217,181,94,0.32)]"
                   animate={{ width: `${progress}%` }}
@@ -131,7 +154,7 @@ export function QuizExperience() {
                   <div
                     key={label}
                     className={cn(
-                      "ui-bevel flex items-center justify-center border px-2 py-3 text-center text-[10px] uppercase tracking-[0.24em]",
+                      "ui-bevel flex items-center justify-center border-2 px-2 py-3 text-center text-sm font-semibold uppercase tracking-[0.05em]",
                       active
                         ? "border-gold-300/28 bg-gold-300/10 text-gold-200"
                         : "border-white/8 bg-white/[0.03] text-slate-500",
@@ -149,7 +172,7 @@ export function QuizExperience() {
               <div
                 key={question.id}
                 className={cn(
-                  "ui-bevel h-2 flex-1 border transition duration-300",
+                  "ui-bevel h-3 flex-1 border-2 transition duration-300",
                   index < currentIndex
                     ? "border-gold-300/22 bg-[linear-gradient(90deg,rgba(126,90,34,0.9),rgba(242,220,141,0.9))]"
                     : index === currentIndex
@@ -161,15 +184,15 @@ export function QuizExperience() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="ui-bevel border border-white/8 bg-black/20 px-4 py-3">
+            <div className="ui-bevel border-2 border-white/10 bg-black/20 px-4 py-3">
               <p className="ui-eyebrow">Current phase</p>
               <p className="mt-2 font-display text-2xl text-white">{phase}</p>
             </div>
-            <div className="ui-bevel border border-white/8 bg-black/20 px-4 py-3">
+            <div className="ui-bevel border-2 border-white/10 bg-black/20 px-4 py-3">
               <p className="ui-eyebrow">Tension</p>
               <p className="mt-2 font-display text-2xl text-gold-300">{tension}</p>
             </div>
-            <div className="ui-bevel border border-white/8 bg-black/20 px-4 py-3">
+            <div className="ui-bevel border-2 border-white/10 bg-black/20 px-4 py-3">
               <p className="ui-eyebrow">Reading style</p>
               <p className="mt-2 font-display text-2xl text-white">
                 {currentIndex < 4 ? "Polite" : currentIndex < 8 ? "Personal" : "Unkind"}
@@ -194,32 +217,42 @@ export function QuizExperience() {
             Queue Conditions
           </p>
           <h2 className="mt-4 font-display text-2xl text-white">
-            The answers are all bad in revealing ways.
+            Short answers. Pure gamer tells.
           </h2>
-          <p className="mt-3 text-sm leading-7 text-slate-300">
-            No match history. No API. Just pattern recognition, queue shame, and
-            the exact tone this kind of accusation deserves.
+          <p className="mt-3 text-lg leading-7 text-slate-200">
+            No stat sites. No excuses. Just enough lane behavior to expose your
+            habits.
           </p>
         </GoldCard>
+
+        {phaseChampion ? (
+          <ChampionArtPanel
+            champion={phaseChampion}
+            title={`${phase} Focus`}
+            subtitle={phaseChampion.fantasy}
+            compact
+            className="min-h-[16rem]"
+          />
+        ) : null}
 
         <GoldCard className="p-6">
           <p className="ui-eyebrow">
             Tribunal Notes
           </p>
-          <div className="mt-4 grid gap-3 text-sm text-slate-300">
-            <div className="ui-bevel flex items-center justify-between border border-white/8 bg-black/20 px-4 py-3">
+          <div className="mt-4 grid gap-3 text-lg text-slate-200">
+            <div className="ui-bevel flex items-center justify-between border-2 border-white/10 bg-black/20 px-4 py-3">
               <span>Profile confidence</span>
               <span className="font-display text-xl text-gold-300">
                 {currentIndex < 3 ? "unstable" : currentIndex < 7 ? "narrowing" : "locked"}
               </span>
             </div>
-            <div className="ui-bevel flex items-center justify-between border border-white/8 bg-black/20 px-4 py-3">
+            <div className="ui-bevel flex items-center justify-between border-2 border-white/10 bg-black/20 px-4 py-3">
               <span>Detected impulse</span>
               <span className="font-display text-xl text-gold-300">
                 {currentIndex < 4 ? "contained" : currentIndex < 8 ? "spiking" : "public"}
               </span>
             </div>
-            <div className="ui-bevel flex items-center justify-between border border-white/8 bg-black/20 px-4 py-3">
+            <div className="ui-bevel flex items-center justify-between border-2 border-white/10 bg-black/20 px-4 py-3">
               <span>Chance this feels personal</span>
               <span className="font-display text-xl text-gold-300">high</span>
             </div>

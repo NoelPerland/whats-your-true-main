@@ -2,15 +2,44 @@ import Link from "next/link";
 
 import { ArchetypePreviewCard } from "@/components/landing/ArchetypePreviewCard";
 import { buttonClasses } from "@/components/ui/ActionButton";
+import { ChampionArtPanel } from "@/components/ui/ChampionArtPanel";
 import { CinematicBackdrop } from "@/components/ui/CinematicBackdrop";
 import { GoldCard } from "@/components/ui/GoldCard";
+import { PixelIcon } from "@/components/ui/PixelIcon";
 import { archetypes } from "@/data/archetypes";
 import { champions } from "@/data/champions";
+import type { Champion } from "@/lib/types";
 
 const previewArchetypes = archetypes.slice(0, 3);
+const featuredChampions = ["yasuo", "jinx", "thresh"]
+  .map((slug) => champions.find((champion) => champion.slug === slug))
+  .filter((champion): champion is Champion => champion !== undefined);
+const fallbackChampion = champions.find((champion) => champion.slug === "yasuo");
+
+if (!fallbackChampion) {
+  throw new Error("Missing fallback champion for landing page.");
+}
+
+const primaryFeaturedChampion: Champion = featuredChampions[0] ?? fallbackChampion;
+
 const championNames = Object.fromEntries(
   champions.map((champion) => [champion.slug, champion.name]),
 );
+const championLookup: Record<string, Champion> = Object.fromEntries(
+  champions.map((champion) => [champion.slug, champion]),
+);
+
+function getArchetypePreviewChampion(slug: string | undefined): Champion {
+  if (slug) {
+    const champion = championLookup[slug];
+
+    if (champion) {
+      return champion;
+    }
+  }
+
+  return primaryFeaturedChampion;
+}
 
 export default function HomePage() {
   return (
@@ -33,101 +62,84 @@ export default function HomePage() {
         </header>
 
         <section className="relative flex-1 py-16 lg:py-24">
-          <GoldCard className="relative overflow-visible px-7 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
-            <div className="pointer-events-none absolute inset-y-14 left-10 w-px bg-[linear-gradient(180deg,transparent,rgba(242,220,141,0.45),transparent)]" />
-            <div className="pointer-events-none absolute right-[11%] top-12 h-72 w-72 rounded-full border border-gold-300/15 opacity-90" />
-            <div className="pointer-events-none absolute right-[11%] top-12 h-72 w-72 animate-sigil rounded-full border border-gold-300/10" />
-            <div className="pointer-events-none absolute right-[13.5%] top-[4.75rem] h-60 w-60 rounded-full border border-white/6" />
-            <div className="pointer-events-none absolute right-[18%] top-[9rem] h-32 w-32 rotate-45 border border-gold-300/20 bg-gold-300/5 shadow-aura" />
-            <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_380px]">
+          <GoldCard className="relative px-7 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_420px]">
               <div className="max-w-4xl">
-                <p className="ui-eyebrow">Summoner Profile Reading</p>
-                <p className="mt-6 max-w-[13ch] font-display text-[3.8rem] leading-[0.86] text-white sm:text-[5.35rem] lg:text-[6.4rem]">
+                <div className="flex flex-wrap items-center gap-3">
+                  <p className="ui-eyebrow">Summoner Profile Reading</p>
+                  <span className="ui-pixel-chip">
+                    <PixelIcon icon="crown" size={3} />
+                    Solo Queue Lore
+                  </span>
+                </div>
+                <p className="mt-6 max-w-[12ch] font-display text-[4.1rem] leading-[0.86] text-white sm:text-[5.6rem] lg:text-[6.2rem]">
                   Your mechanics say one thing.
                 </p>
-                <p className="mt-5 max-w-[12ch] font-display text-[2.7rem] leading-[0.9] text-gold-300 sm:text-[4.1rem] lg:text-[4.8rem]">
+                <p className="mt-4 max-w-[10ch] font-display text-[3.2rem] leading-[0.9] text-gold-300 sm:text-[4.3rem] lg:text-[4.9rem]">
                   Your ego says another.
                 </p>
-                <p className="mt-4 max-w-[13ch] font-display text-[2.2rem] leading-[0.92] text-slate-200 sm:text-[3rem] lg:text-[3.6rem]">
+                <p className="mt-4 max-w-[11ch] font-display text-[2.5rem] leading-[0.94] text-slate-100 sm:text-[3.1rem] lg:text-[3.55rem]">
                   Let&apos;s determine your true main.
                 </p>
-                <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-                  Ten sharp questions. One expensive-looking verdict. Just enough
-                  psychological damage to feel honest.
+                <p className="mt-8 max-w-xl text-xl leading-8 text-slate-100">
+                  Ten questions. One main. Vision score not included.
                 </p>
 
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Link href="/quiz" className={buttonClasses()}>
-                    Enter the Tribunal
+                    Start the Quiz
                   </Link>
                   <a href="#archetypes" className={buttonClasses("secondary")}>
-                    View the Cards
+                    See Archetypes
                   </a>
+                </div>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <span className="ui-pixel-chip">
+                    <PixelIcon icon="sword" size={3} />
+                    Main Character Bias
+                  </span>
+                  <span className="ui-pixel-chip">
+                    <PixelIcon icon="ward" size={3} />
+                    Map Awareness Alleged
+                  </span>
+                  <span className="ui-pixel-chip">
+                    <PixelIcon icon="rune" size={3} />
+                    Rune Page Energy
+                  </span>
                 </div>
 
                 <div className="mt-10 grid gap-4 sm:grid-cols-3">
                   {[
-                    ["01", "Curated archetypes", "Built for the exact kind of player who says 'trust me' before disaster."],
-                    ["02", "Champion verdict", "A primary main, backup pool, and enough false certainty to feel official."],
-                    ["03", "Shareable damage", "Export a reveal card worthy of Discord, cope, and public overconfidence."],
+                    ["10", "Questions", "Fast reads. No filler."],
+                    ["24", "Champions", "Real League art throughout."],
+                    ["01", "Verdict", "A single main with backup picks."],
                   ].map(([value, label, copy]) => (
                     <div
                       key={label}
-                      className="ui-bevel border border-white/8 bg-black/24 px-4 py-4"
+                      className="ui-bevel border-2 border-white/10 bg-black/24 px-4 py-4"
                     >
-                      <p className="font-display text-3xl text-gold-300">{value}</p>
-                      <p className="mt-3 text-[11px] uppercase tracking-[0.3em] text-slate-100">
+                      <p className="font-display text-4xl text-gold-300">{value}</p>
+                      <p className="mt-3 text-sm font-semibold uppercase tracking-[0.08em] text-slate-100">
                         {label}
                       </p>
-                      <p className="mt-3 text-sm leading-6 text-slate-300">{copy}</p>
+                      <p className="mt-2 text-lg leading-6 text-slate-300">{copy}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="ui-bevel ui-chrome relative p-7">
-                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(217,181,94,0.16),transparent_36%)]" />
-                  <p className="ui-eyebrow relative z-10">Reading Preview</p>
-                  <div className="relative z-10 mt-8 flex justify-center">
-                    <div className="relative flex h-72 w-72 items-center justify-center rounded-full border border-gold-300/20 bg-[radial-gradient(circle,rgba(11,20,38,0.72),rgba(4,8,17,0.98))]">
-                      <div className="absolute inset-5 rounded-full border border-gold-300/12" />
-                      <div className="absolute inset-10 rounded-full border border-white/6" />
-                      <div className="absolute h-44 w-44 rotate-45 border border-gold-300/18 bg-gold-300/5 shadow-[0_0_40px_rgba(217,181,94,0.12)]" />
-                      <div className="relative text-center">
-                        <p className="text-[10px] uppercase tracking-[0.4em] text-gold-300/72">
-                          Verdict
-                        </p>
-                        <p className="mt-4 font-display text-6xl leading-none text-white">
-                          Main
-                        </p>
-                        <p className="mt-3 text-sm uppercase tracking-[0.28em] text-slate-300">
-                          Revealed at the end
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="relative z-10 mt-8 space-y-4">
-                    {[
-                      "Ego density",
-                      "Greed index",
-                      "Map awareness",
-                    ].map((label, index) => (
-                      <div key={label} className="space-y-2">
-                        <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.28em] text-slate-300">
-                          <span>{label}</span>
-                          <span className="text-gold-300">{["volatile", "elevated", "alleged"][index]}</span>
-                        </div>
-                        <div className="h-2 overflow-hidden rounded-full bg-white/5">
-                          <div
-                            className="h-full rounded-full bg-[linear-gradient(90deg,#5F4720,#D9B55E,#F2DC8D)]"
-                            style={{ width: `${[82, 66, 34][index]}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <div className="grid gap-4">
+                {featuredChampions.map((champion, index) => (
+                  <ChampionArtPanel
+                    key={champion.slug}
+                    champion={champion}
+                    title={index === 0 ? "Featured Verdict Style" : "Possible Main Energy"}
+                    subtitle={index === 0 ? "Built with official League champion art." : undefined}
+                    compact
+                    className="min-h-[13.5rem]"
+                  />
+                ))}
               </div>
             </div>
           </GoldCard>
@@ -142,8 +154,8 @@ export default function HomePage() {
               Preview the cards before the reading starts.
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-8 text-slate-300">
-              Not personality types. More like recurring queue crimes with art
-              direction.
+              Not personality types. More like recurring queue crimes, now with
+              champion cards and way too much confidence.
             </p>
           </div>
 
@@ -153,6 +165,7 @@ export default function HomePage() {
                 key={archetype.key}
                 archetype={archetype}
                 championNames={championNames}
+                featuredChampion={getArchetypePreviewChampion(archetype.championPool[0])}
                 index={index}
               />
             ))}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel, Spectral } from "next/font/google";
+import { Barlow_Condensed, Cinzel, Silkscreen } from "next/font/google";
 
 import "@/app/globals.css";
 
@@ -9,10 +9,16 @@ const displayFont = Cinzel({
   weight: ["400", "500", "600", "700"],
 });
 
-const bodyFont = Spectral({
+const bodyFont = Barlow_Condensed({
   subsets: ["latin"],
   variable: "--font-body",
   weight: ["400", "500", "600", "700"],
+});
+
+const pixelFont = Silkscreen({
+  subsets: ["latin"],
+  variable: "--font-pixel",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -29,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${displayFont.variable} ${bodyFont.variable} min-h-screen bg-abyss font-sans text-slate-100 antialiased`}
+        className={`${displayFont.variable} ${bodyFont.variable} ${pixelFont.variable} min-h-screen bg-abyss font-sans text-slate-100 antialiased`}
       >
         {children}
       </body>

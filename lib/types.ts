@@ -39,6 +39,7 @@ export interface Question {
 export interface Champion {
   slug: string;
   name: string;
+  riotId: string;
   roles: string[];
   personalityTags: TraitKey[];
   archetypeMatches: string[];

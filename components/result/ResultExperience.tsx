@@ -8,8 +8,11 @@ import { useEffect, useRef, useState } from "react";
 
 import { ResultShareCard } from "@/components/result/ResultShareCard";
 import { ActionButton, buttonClasses } from "@/components/ui/ActionButton";
+import { ChampionArtPanel } from "@/components/ui/ChampionArtPanel";
 import { GoldCard } from "@/components/ui/GoldCard";
+import { PixelIcon } from "@/components/ui/PixelIcon";
 import { clearQuizOutcome, loadQuizOutcome } from "@/lib/result";
+import { getChampionLoadingUrl, getChampionSplashUrl } from "@/lib/riotAssets";
 import type { QuizOutcome } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -114,9 +117,13 @@ export function ResultExperience() {
   return (
     <div className="space-y-8">
       <section className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_440px]">
-        <GoldCard className="overflow-visible px-8 py-10 sm:px-10 sm:py-12">
-          <div className="pointer-events-none absolute left-8 top-8 h-24 w-px bg-[linear-gradient(180deg,rgba(242,220,141,0.58),transparent)]" />
-          <div className="pointer-events-none absolute bottom-10 right-10 h-32 w-32 rotate-45 border border-gold-300/12 bg-gold-300/5" />
+        <GoldCard className="overflow-hidden px-8 py-10 sm:px-10 sm:py-12">
+          <img
+            src={getChampionSplashUrl(outcomeData.primaryChampion.riotId)}
+            alt={outcomeData.primaryChampion.name}
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-16"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(2,4,10,0.76),rgba(2,4,10,0.94))]" />
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -124,17 +131,23 @@ export function ResultExperience() {
               revealStage >= 1 ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }
             }
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-5"
+            className="relative z-10 space-y-5"
           >
-            <p className="ui-eyebrow">Tribunal Verdict</p>
+            <div className="flex flex-wrap items-center gap-3">
+              <p className="ui-eyebrow">Tribunal Verdict</p>
+              <span className="ui-pixel-chip">
+                <PixelIcon icon="crown" size={3} />
+                Main Locked
+              </span>
+            </div>
             <div className="max-w-4xl space-y-4">
               <h1 className="font-display text-5xl leading-[0.92] text-white sm:text-7xl">
                 {outcomeData.archetype.title}
               </h1>
-              <p className="max-w-3xl text-xl leading-8 text-gold-300/88">
+              <p className="max-w-3xl text-2xl leading-8 text-gold-300/92">
                 {outcomeData.archetype.subtitle}
               </p>
-              <p className="max-w-3xl text-base leading-8 text-slate-300">
+              <p className="max-w-3xl text-xl leading-8 text-slate-100">
                 {outcomeData.archetype.description}
               </p>
             </div>
@@ -146,22 +159,22 @@ export function ResultExperience() {
               revealStage >= 2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }
             }
             transition={{ duration: 0.45, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_250px]"
+            className="relative z-10 mt-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_250px]"
           >
-            <div className="ui-bevel border border-gold-300/16 bg-black/20 p-5">
+            <div className="ui-bevel border-2 border-gold-300/18 bg-black/26 p-5">
               <p className="ui-eyebrow">Psychological Assessment</p>
-              <p className="mt-4 text-base leading-8 text-slate-300">
+              <p className="mt-4 text-xl leading-8 text-slate-100">
                 {outcomeData.assessment}
               </p>
             </div>
 
-            <div className="ui-bevel border border-gold-300/16 bg-[linear-gradient(180deg,rgba(217,181,94,0.14),rgba(4,8,17,0.5))] p-5">
+            <div className="ui-bevel border-2 border-gold-300/18 bg-[linear-gradient(180deg,rgba(217,181,94,0.16),rgba(4,8,17,0.58))] p-5">
               <p className="ui-eyebrow">Dominant Traits</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {outcomeData.dominantTraits.map((trait) => (
                   <span
                     key={trait}
-                    className="ui-bevel border border-gold-300/20 bg-black/28 px-3 py-2 text-[10px] uppercase tracking-[0.26em] text-white"
+                    className="ui-bevel border-2 border-gold-300/22 bg-black/28 px-3 py-2 text-sm font-semibold uppercase tracking-[0.06em] text-white"
                   >
                     {trait}
                   </span>
@@ -180,38 +193,13 @@ export function ResultExperience() {
           }
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <GoldCard className="relative overflow-visible p-8 text-center">
-            <div className="pointer-events-none absolute inset-x-10 top-8 h-56 rounded-full bg-[radial-gradient(circle,rgba(217,181,94,0.24),transparent_64%)] blur-3xl" />
-            <div className="pointer-events-none absolute left-1/2 top-6 h-[22rem] w-[22rem] -translate-x-1/2 rounded-full border border-gold-300/12" />
-            <div className="pointer-events-none absolute left-1/2 top-10 h-[18rem] w-[18rem] -translate-x-1/2 rounded-full border border-white/6" />
-            <div className="pointer-events-none absolute left-1/2 top-[5.25rem] h-40 w-40 -translate-x-1/2 rotate-45 border border-gold-300/18 bg-gold-300/6 shadow-[0_0_50px_rgba(217,181,94,0.12)]" />
-
-            <div className="relative z-10">
-              <p className="ui-eyebrow">This Is Your Main</p>
-              <div className="mt-8 flex justify-center">
-                <div className="flex h-72 w-72 items-center justify-center rounded-full border border-gold-300/24 bg-[radial-gradient(circle_at_top,rgba(217,181,94,0.18),rgba(9,18,35,0.92))] shadow-[0_0_52px_rgba(217,181,94,0.16)]">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.42em] text-gold-300/72">
-                      Verdict
-                    </p>
-                    <p className="mt-4 font-display text-6xl leading-none text-white">
-                      {outcomeData.primaryChampion.name}
-                    </p>
-                    <p className="mt-4 text-[11px] uppercase tracking-[0.28em] text-slate-300">
-                      {outcomeData.primaryChampion.roles.join(" / ")}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <p className="mt-8 text-[11px] uppercase tracking-[0.32em] text-gold-300/78">
-                Champion profile
-              </p>
-              <p className="mx-auto mt-3 max-w-sm text-sm leading-7 text-slate-300">
-                {outcomeData.primaryChampion.fantasy}
-              </p>
-            </div>
-          </GoldCard>
+          <ChampionArtPanel
+            champion={outcomeData.primaryChampion}
+            title="This Is Your Main"
+            subtitle={outcomeData.primaryChampion.fantasy}
+            className="min-h-[38rem]"
+            imageClassName="object-center"
+          />
         </motion.div>
       </section>
 
@@ -228,7 +216,7 @@ export function ResultExperience() {
               <div>
                 <p className="ui-eyebrow">Curated Backups</p>
                 <h2 className="mt-3 font-display text-3xl text-white">
-                  If you need plausible deniability.
+                  If your main gets banned.
                 </h2>
               </div>
             </div>
@@ -237,20 +225,26 @@ export function ResultExperience() {
               {outcomeData.backupChampions.slice(0, 4).map((champion, index) => (
                 <div
                   key={champion.slug}
-                  className="ui-bevel border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(5,8,15,0.72))] p-5"
+                  className="ui-bevel relative overflow-hidden border-2 border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(5,8,15,0.72))] p-5"
                 >
+                  <img
+                    src={getChampionLoadingUrl(champion.riotId)}
+                    alt={champion.name}
+                    className="absolute inset-0 h-full w-full object-cover object-top opacity-22"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,4,10,0.28),rgba(2,4,10,0.9))]" />
                   <div className="flex items-start justify-between gap-3">
-                    <div>
+                    <div className="relative z-10">
                       <p className="ui-eyebrow">Backup 0{index + 1}</p>
                       <p className="mt-3 font-display text-3xl text-white">
                         {champion.name}
                       </p>
                     </div>
-                    <span className="rounded-full border border-gold-300/16 bg-gold-300/8 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-gold-300/82">
+                    <span className="relative z-10 rounded-md border-2 border-gold-300/18 bg-gold-300/8 px-3 py-1 text-sm font-semibold uppercase tracking-[0.06em] text-gold-300/86">
                       {champion.roles[0]}
                     </span>
                   </div>
-                  <p className="mt-4 text-sm leading-7 text-slate-300">
+                  <p className="relative z-10 mt-4 text-lg leading-7 text-slate-100">
                     {champion.fantasy}
                   </p>
                 </div>
@@ -275,7 +269,7 @@ export function ResultExperience() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
-                className="mt-4 text-xl leading-9 text-slate-100"
+                className="mt-4 text-2xl leading-9 text-slate-100"
               >
                 {roastLine}
               </motion.p>
@@ -308,26 +302,25 @@ export function ResultExperience() {
         animate={revealStage >= 3 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       >
-        <GoldCard className="grid gap-8 p-8 lg:grid-cols-[320px_minmax(0,1fr)]">
+          <GoldCard className="grid gap-8 p-8 lg:grid-cols-[320px_minmax(0,1fr)]">
           <div>
             <p className="ui-eyebrow">Fake Stat Profile</p>
             <h2 className="mt-3 font-display text-3xl text-white">
-              Numbers with excellent posture.
+              Clean bars. Fake science.
             </h2>
-            <p className="mt-4 text-sm leading-7 text-slate-300">
-              Emotionally correct. Scientifically corrupt. Perfect for this
-              particular kind of ceremony.
+            <p className="mt-4 text-lg leading-7 text-slate-200">
+              More statline than psychology. Still completely slander.
             </p>
           </div>
 
           <div className="space-y-5">
             {outcomeData.stats.map((stat, index) => (
               <div key={stat.key} className="space-y-2">
-                <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-slate-300">
+                <div className="flex items-center justify-between text-sm font-semibold uppercase tracking-[0.08em] text-slate-200">
                   <span>{stat.label}</span>
                   <span className="font-display text-xl text-gold-300">{stat.value}</span>
                 </div>
-                <div className="ui-bevel h-4 overflow-hidden border border-white/6 bg-[#060b13]">
+                <div className="ui-bevel h-5 overflow-hidden border-2 border-white/10 bg-[#060b13]">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: revealStage >= 3 ? `${stat.value}%` : "0%" }}
@@ -360,7 +353,7 @@ export function ResultExperience() {
             <div>
               <p className="ui-eyebrow">Share Card</p>
               <h2 className="mt-3 font-display text-3xl text-white">
-                Export the accusation.
+                Post the allegations.
               </h2>
             </div>
             <ActionButton tone="secondary" onClick={handleShareCardExport}>

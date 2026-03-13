@@ -28,6 +28,7 @@ const config: Config = {
         panel: "0 30px 80px rgba(0, 0, 0, 0.42)",
         frame: "0 0 0 1px rgba(242,220,141,0.08), 0 32px 88px rgba(0, 0, 0, 0.62)",
         aura: "0 0 42px rgba(217, 181, 94, 0.18)",
+        edge: "0 0 0 2px rgba(242,220,141,0.14), 0 22px 64px rgba(0, 0, 0, 0.58)",
       },
       backgroundImage: {
         "hero-radial":
@@ -35,6 +36,7 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-display)"],
+        pixel: ["var(--font-pixel)"],
         sans: ["var(--font-body)"],
       },
       letterSpacing: {

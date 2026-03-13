@@ -17,6 +17,14 @@ const particles = [
   { top: "82%", left: "76%", size: 2, delay: "1s", duration: "15s" },
   { top: "86%", left: "38%", size: 4, delay: "4s", duration: "13s" },
 ];
+const pixelMotes = [
+  { top: "12%", left: "58%" },
+  { top: "26%", left: "14%" },
+  { top: "37%", left: "73%" },
+  { top: "52%", left: "24%" },
+  { top: "66%", left: "82%" },
+  { top: "78%", left: "46%" },
+];
 
 const variantClasses = {
   landing:
@@ -67,7 +75,20 @@ export function CinematicBackdrop({
         />
       ))}
 
+      {pixelMotes.map((pixel, index) => (
+        <span
+          key={`${pixel.top}-${pixel.left}-${index}`}
+          className="absolute h-2 w-2 bg-gold-300/60 shadow-[0_0_10px_rgba(242,220,141,0.22)] [image-rendering:pixelated]"
+          style={{
+            top: pixel.top,
+            left: pixel.left,
+            animation: `pixelBlink ${8 + index}s steps(2, end) ${index * 0.8}s infinite`,
+          }}
+        />
+      ))}
+
       <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] [background-size:96px_96px]" />
+      <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(transparent_0,transparent_7px,rgba(242,220,141,0.22)_7px,rgba(242,220,141,0.22)_8px),linear-gradient(90deg,transparent_0,transparent_7px,rgba(242,220,141,0.22)_7px,rgba(242,220,141,0.22)_8px)] [background-size:32px_32px]" />
     </div>
   );
 }
